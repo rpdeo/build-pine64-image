@@ -63,7 +63,8 @@ unxz -k --stdout "$SIMPLEIMAGE" > "$TEMP/$IMAGE"
 # Enlarge
 dd if=/dev/zero bs=1M count=$SIZE >> "$TEMP/$IMAGE"
 # Resize
-echo ", +" | sfdisk -N 2 "$TEMP/$IMAGE"
+#echo ", +" | sfdisk -N 2 "$TEMP/$IMAGE"
+echo ",+,L" | sfdisk "$TEMP/$IMAGE" -L -uS -N2 --force
 
 # Device
 mkdir "$TEMP/boot"
